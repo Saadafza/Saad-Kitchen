@@ -1,0 +1,898 @@
+body{
+  background-color: rgba(246,243,243,255);
+  overflow-x: hidden;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: red rgb(188, 187, 187);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgb(158, 158, 158);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: red;
+  border-radius: 20px;
+  border: 3px solid rgb(188, 186, 186);
+}
+.topic{
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bolder;
+}
+.miannav{
+  background-color: #ffffff;
+  color: #000000;
+ 
+
+  position: sticky; /* Make the navbar sticky */
+  top: 0; /* Stick it to the top of the viewport */
+ 
+  z-index: 100; /* Set a high z-index to ensure it stays on top of other elements */
+}
+.food-img{
+  width: 150px;
+  height: 150px;
+}
+.food-card{
+  background-color: rgba(247,238,233,255);
+ 
+}
+.img-detail{
+width: 30%;
+height: 30%;
+}
+ 
+.menu{
+  width: 100px;
+  height: 100px;
+  border-radius: 10px ;
+  background-color: cornsilk;
+
+}
+.menu:active{
+  background-color: rgb(219, 31, 17);
+}
+.delivery{
+  width: 33%;
+  
+  height: 40px;
+  background-color: rgb(243, 225, 192);
+border-radius: 20px;
+margin-top: 10%;
+}
+.delivery span{
+  float: left;
+  color: rgb(255, 166, 0);
+  font-weight: bolder;
+  font-size: larger;
+  line-height: 40px;
+  padding-left: 5%;
+}
+.real {
+  background-color: hsla(255, 0, 0, 0.5); /* Translucent green with 70% opacity */
+}
+
+.imagebike{
+  width: 18%;
+  height: 10%;
+  float: right;
+  position: relative;
+
+  right: 10px;
+  border-radius: 50%;
+  background-color: #ffffff;
+margin-top: 3%;
+}
+.sec{
+  background-color: rgba(246,243,243,255);
+}
+.title h1{
+  margin-top: 2px;
+  font-size:7.5vh;
+  font-weight: bolder;
+  line-height: 1.5;
+  word-spacing: 5px;
+  letter-spacing: 1px;
+}
+.title h1 span{
+  color: rgb(255, 153, 0);
+  font-size:7.5vh;
+}
+
+.cass{
+  background-image: url(./picture/v300batch2-nunoon-28-modified\ \(3\)-modified.png);
+  background-repeat: no-repeat;
+  background-position-x: right;
+
+ 
+ 
+  
+ 
+ 
+}
+.not-found{
+  width: 500px;
+  height: 400px;
+  margin-top: 25%;
+}
+
+/* Styles for the card container */
+.tap {
+ 
+  width: 200px;
+
+  position: relative;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+/* Background image and blur effect */
+.crystal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  background-size: cover;
+  background-position: center;
+  backdrop-filter: blur(10px); /* Adjust blur intensity as needed */
+}
+
+/* Content inside the card */
+.content {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: #fff; /* Adjust text color as needed */
+  /* Add other styles as needed for your card content */
+}
+.content img{
+  width: 200px;
+  height: 100px;
+}
+/* Styles for the container */
+.image-container {
+  width: 200px; /* Adjust container width as needed */
+  height: 200px; /* Adjust container height as needed */
+  overflow: hidden;
+  position: relative;
+}
+
+/* Styles for the image */
+.shaking-image {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s ease-in-out;
+}
+.img-con{
+  width: 100%;
+  height: 50%;
+}
+
+/* Animation keyframes for the shaking effect */
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, -5px); }
+  50% { transform: translate(5px, 5px); }
+  75% { transform: translate(-5px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
+/* Applying the animation on hover */
+.image-container:hover .shaking-image {
+  animation: shake 0.4s;
+}
+
+
+.hee {
+margin-top: 10%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, .15);
+  
+  backdrop-filter: blur(5px);
+}
+.menucard{
+  margin-top: 10%;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2); 
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, .15);
+  
+  backdrop-filter: blur(5px);
+}
+.menucard-img{
+  width: 60%;
+  transition: transform 0.3s ease-in-out;
+  height: 140px;
+  display: block; /* Make the image a block-level element */
+  margin-right:20% ;
+  float: left;
+  
+}
+.cart-img{
+ 
+  width: 22%;
+  transition: transform 0.3s ease-in-out;
+ 
+  display: block; /* Make the image a block-level element */
+ 
+  float: right;
+  position: relative;
+  top:90px;
+  
+ 
+}
+
+.hee img{
+  width: 80%;
+  transition: transform 0.3s ease-in-out;
+ 
+  display: block; /* Make the image a block-level element */
+  margin: 0 auto;
+  
+}
+
+
+.hee img:hover{
+  transform: scale(1.2); 
+}
+.menucard-img:hover{
+  transform: scale(1.2); 
+}
+.cart-img:hover{
+  transform: scale(1.2); 
+}
+.hee p{
+font-weight: bold;
+
+}
+.menucard p{
+  margin-right: 10%;
+  
+  }
+.des{
+  color: rgb(138, 136, 133);
+}
+.chick{
+  width: 100%;
+  height: 100%;
+  background-color: red;
+}
+.menubutton {
+  position: relative;
+  width: 80%;
+  height: 80px;
+  margin-top: 10px;
+  background-color: #bbb7b7;
+}
+
+.button-image {
+  position: absolute;
+  /* Adjust the height as needed */
+}
+
+.top-left {
+  top: auto; /* Adjust the top position as needed */
+  left: -15px; /* Adjust the left position as needed */
+}
+
+.top-right {
+  top: 5px; /* Adjust the top position as needed */
+  right: 5px; /* Adjust the right position as needed */
+}
+
+
+
+
+.buttonrow{
+  margin-top: 20px;
+}
+.orange-line {
+  border: none;
+  height: 3px;
+  width: 100px;
+  background-color: rgb(255, 123, 0);
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.empty{
+  margin-top: 50%;
+  width: 90%;
+}
+.tt{
+  font-weight: bold;
+}
+.black{
+  background-color: #000000;
+  border-radius: 20px;
+
+}
+.iconClass{
+  position: relative;
+}
+.iconClass span{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  display: block;
+}
+
+.mWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(0 0 0 / 17%);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.mWrapper .mBox {
+  width: 650px;
+  height: 450px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0px 0px 10px #0000002e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.mWrapper .mBox button.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  border: 0px;
+  box-shadow: 0px 0px 4px #00000029;
+}
+/* Variriables */
+
+
+*{
+	padding: 0;
+	margin: 0;
+	font-family: 'Roboto', sans-serif;	font-size: 14px;
+	font-weight: normal;
+	box-sizing: border-box;
+}
+/* body{
+	width: 100%;
+	background-color: #eee;
+} */
+hr{
+	border: 1px solid rgba(236, 240, 241,0.3);
+}
+.containercon{
+	width: 960px;
+	margin: 0 auto;
+}
+/* Content Styling */
+main{
+	height: auto;
+	background-color: var(--white);
+	padding: 30px;
+	box-shadow: 0 0 2px #808080;
+	position: relative;
+	z-index: 100;
+}
+main h2{
+	font-size: 20px;
+	text-align: left;
+	margin-bottom: 15px;
+}
+/* Content Section === Checkout Page */
+main .application-form{
+	max-width: 600px;
+	padding: 10px;
+	margin: 0 auto;
+}
+/* Content main === Checkout Page === Checkout Items */
+/* main .application-form .application-form-detail{
+	width: 100%;
+}
+main .application-form .application-form-detail h4{
+	display: block;
+	color: var(--secondayColor);
+	background-color: var(--mainColor);
+	text-transform: uppercase;
+	padding: 5px;
+	margin-bottom: 10px;
+}
+form .form-group{
+	margin: 10px 5px;
+	width: calc(100% - 10px);
+}
+form label{
+	color: var(--mainColor);
+	display: block;
+	margin-bottom: 6px;
+}
+form .form-group input,
+form .form-group select,
+form .form-group textarea{
+	width: 100%;
+	padding: 8px 5px;
+	border: 1px solid var(--secondayColor);
+	outline: none;
+}
+form input:focus,
+form select:focus,
+form textarea:focus{
+	outline: 1px solid var(--secondayColor);
+	border: 1xp solid transparent;
+}
+form .form-inline{
+	display: flex;
+	justify-content: space-between;
+}
+form .form-inline.flex{
+	display: flex;
+	
+	margin-bottom: 10px;
+}
+form .form-inline.flex input{
+	width: unset;
+	margin-right: 10px;
+}
+form .form-inline .form-group{
+	width: 48%;
+}
+form button{
+	display: block;
+	padding: 6px 10px;
+	background-color: var(--mainColor);
+	color: var(--secondayColor);
+	border: none;
+	cursor: pointer;
+	transition: 0.3s ease-in;
+	margin-left: 5px;
+}
+form button:hover{
+	color: var(--white);
+} */
+.buttonsmenu{
+  margin-top: 100px;
+}
+.navbar-nav{
+  margin-left: 100%;
+}
+
+
+
+/* Add the following styles to your CSS file */
+.button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 120px;
+  margin: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border: 2px solid #eee;
+  border-radius: 5px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}
+
+.button:hover {
+  background-color: #f2f2f2;
+}
+
+.button.active {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #fff;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #eee;
+  margin-bottom: 10px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+.icon-container.active {
+  background-color: #fff;
+  border: 2px solid #dc3545;
+}
+
+.icon-container.active .icon {
+  filter: invert(48%) sepia(65%) saturate(3446%) hue-rotate(346deg) brightness(97%) contrast(101%);
+}
+
+.icon {
+  margin: 10px;
+  transition: all 0.3s ease;
+}
+
+
+.menubutton {
+  width: 80px;
+  height: 70px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.icon-container{
+  background-color: #808080;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin: auto;
+}
+
+.lineunder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.lineunder hr {
+  position: absolute;
+  bottom: -14px;
+  width: 140px;
+  height: 4px;
+  background-color: #ff8c00;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.8;
+}
+
+/* Optional: add more space between the buttons and the line */
+.buttonsmenu {
+  margin-bottom: 20px;
+}
+.menu-card {
+  height: 100%;
+}
+
+.img-container {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.img-container:hover img {
+  transform: scale(1.1);
+}
+
+.cart-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  background-color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.card-price {
+  color: #ff8c00;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.btn-rounded {
+  border-radius: 25px;
+  padding: 10px 20px;
+  margin-top: 1rem;
+}
+
+/* Bootstrap Grid Layout */
+.row-cols-1 > * {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.row-cols-sm-2 > * {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.row-cols-md-3 > * {
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+}
+
+.g-4 {
+  gap: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .row-cols-md-3 > * {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.container1{
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 20px;
+}
+.container1 .box{
+  width: calc(33% - 10px);
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 30px;
+  border-radius: 5px;
+}
+.box .quote i{
+margin-top: 10px;
+font-size: 45px;
+color: #17c0eb
+}
+.container1 .box .image{
+  margin: 10px 0;
+  height: 150px;
+  width: 150px;
+  background: #8e44ad;
+  padding: 3px;
+  border-radius: 50%;
+}
+.box .image img{
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #fff;
+}
+.box p{
+  text-align: justify;
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.box .name_job{
+  margin: 10px 0 3px 0;
+  color: #8e44ad;
+  font-size: 18px;
+  font-weight: 600;
+}
+.rating i{
+  font-size: 18px;
+  color: #8e44ad;
+  margin-bottom: 5px;
+}
+.btns{
+  margin-top: 20px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.btns button{
+  background: #8e44ad;
+  width: 100%;
+  padding: 9px 0px;
+  outline: none;
+  border: 2px solid #8e44ad;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 400;
+  color: #8e44ad;
+  transition: all 0.3s linear;
+}
+.btns button:first-child{
+  background: none;
+  margin-right: 5px;
+}
+.btns button:last-child{
+  color: #fff;
+  margin-left: 5px;
+}
+.btns button:first-child:hover{
+  background: #8e44ad;
+  color: #fff;
+}
+.btns button:hover{
+  color: #fff;
+}
+@media (max-width:1045px){
+  .container .box{
+    width: calc(50% - 10px);
+    margin-bottom: 20px;
+  }
+}
+@media (max-width:710px){
+  .container .box{
+    width: 100%;
+  }
+}
+.menucards{
+ 
+   margin-left: 40px;
+   margin-right: 40px;
+   width: auto;
+ 
+ 
+}
+.search-results-container {
+  display: flex;
+  overflow-x: auto;
+  padding: 10px;
+}
+
+.product-card {
+  flex: 0 0 auto;
+  width: 300px;
+  margin-right: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.product-card img {
+  display: block;
+  margin: 0 auto;
+}
+
+.product-details {
+  text-align: center;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.miannav .prof{
+  background-color: white;
+  opacity: 1 !important;
+
+}
+.prof a{
+  color: #000000;
+  font-weight:bolder ;
+}
+.prof img{
+  width: 30px;
+  height: 30px;
+}
+.profile-image{
+  width: 30px;
+  height: 30px;
+}
+.show{
+  background-color: white;
+}
+.username{
+  color: rgb(255, 208, 0);
+}
+.profile-img{
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  border-radius: 50%;
+}
+.track{
+  color: white;
+}
+.svgm{
+  width: 30px;
+  height: 30px;
+}
+.static{
+  margin: auto;
+}
+
+
+
+
+
+.studentimg {
+  width: 80%;
+
+  height: 300px;
+border-radius: 10px;
+  
+}
+
+/* Customize the color of carousel controls */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+background-color: black; /* Change this to the desired color */
+margin-top: 20px;
+color:yellow ;
+}
+.shaking-Text h2{
+  line-height: inherit;
+position: relative;
+top: 60px;
+}
+@keyframes shaked {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-5px, -5px); }
+  50% { transform: translate(5px, 5px); }
+  75% { transform: translate(-5px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.shaking-Text:hover h2 {
+  animation: shaked 0.5s ease-in-out;
+}
+hrling{
+  
+  border-top: 1px solid orange;
+ 
+}
+.applydel{
+  font-weight: lighter;
+}
