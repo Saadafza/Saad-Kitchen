@@ -1,4 +1,4 @@
-import { Table, Space, Button, message } from 'antd';
+import { Table, Space, Button, message, Card } from 'antd';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
@@ -11,7 +11,7 @@ function OrdersByDeliver() {
   const [userName, setUserName] = useState('');
   const [userId, setUserId] = useState('');
   const [deliver, setDeliver] = useState('');
-  const [roles, setRoles] = useState("");
+  const [roles, setRoles] = useState('');
 
   useEffect(() => {
     const token = localStorage.getItem('ssid');
@@ -20,7 +20,7 @@ function OrdersByDeliver() {
       if (decodedToken) {
         const { id, name } = decodedToken;
         setUserId(id);
-        setUserName("Picked by " + name);
+        setUserName('Picked by ' + name);
         setDeliver(name);
         setRoles(decodedToken.role);
       }
@@ -43,7 +43,7 @@ function OrdersByDeliver() {
       .get('https://backend-self-delta.vercel.app/api/claimedorder')
       .then((res) => {
         const claimedData = res.data.claim;
-        setClaimedOrders(claimedData.map((item) => item._id));
+        setClaimedOrders(claimedData.map((item) => item.orders._id));
         setUserClaimed(claimedData.map((item) => item));
       })
       .catch((error) => {
@@ -55,7 +55,10 @@ function OrdersByDeliver() {
     setLoadingClaim(true);
 
     try {
-      const res = await axios.put(`https://backend-self-delta.vercel.app/api/product/${orderId}/status`, { status: userName });
+      const res = await axios.put(
+        `https://backend-self-delta.vercel.app/api/product/${orderId}/status`,
+        { status: userName }
+      );
 
       if (res.data && res.data.status === true) {
         message.success('Claim successful');
@@ -63,7 +66,7 @@ function OrdersByDeliver() {
         await axios.post('https://backend-self-delta.vercel.app/api/claimorder', {
           orders: orderId,
           Claimedby: userName,
-          user: userId
+          user: userId,
         });
 
         fetchClaimedOrders();
@@ -80,9 +83,12 @@ function OrdersByDeliver() {
 
   const handleDeliver = async (orderId) => {
     try {
-      const res = await axios.put(`https://backend-self-delta.vercel.app/api/product/${orderId}/status`, {
-        status: 'Delivered',
-      });
+      const res = await axios.put(
+        `https://backend-self-delta.vercel.app/api/product/${orderId}/status`,
+        {
+          status: 'Delivered',
+        }
+      );
 
       if (res.data && res.data.status === true) {
         message.success('Order delivered successfully');
@@ -190,10 +196,20 @@ function OrdersByDeliver() {
   const filteredClaimedOrders = userClaimed.filter((item) => item.Claimedby === userName);
   const tableDataOrder = Array.isArray(orders) ? orders : [];
   const tableDataClaim = Array.isArray(filteredClaimedOrders) ? filteredClaimedOrders : [];
+  const earning = filteredClaimedOrders.length * 150; // Calculate earning based on claimed orders
 
   if (roles === 'Delivery') {
     return (
       <>
+        <h2 style={{ marginBottom: '20px' }}>Seller Center</h2>
+        <Card style={{ marginBottom: '20px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: '24px', color: '#000' }}>Total Earning</div>
+              <div style={{ fontSize: '36px', color: '#000', fontWeight: 'bold' }}>{earning} USD</div>
+            </div>
+          </div>
+        </Card>
         <Table dataSource={tableDataOrder} columns={orderColumns} />
         <h1>ORDERS {deliver}</h1>
         <Table dataSource={tableDataClaim} columns={claimColumns} />
@@ -208,4 +224,5 @@ function OrdersByDeliver() {
     );
   }
 }
+
 export default OrdersByDeliver;

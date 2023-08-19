@@ -108,6 +108,7 @@ function Nav(props) {
                   data-toggle="dropdown"
                   aria-haspopup="true"
                   aria-expanded="false"
+                  style={{backgroundColor:"inherit"}}
                 >
              Apply
                 </Link>

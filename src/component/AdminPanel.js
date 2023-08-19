@@ -523,9 +523,9 @@ const deleterequest = (itemId)=>{
     },
     {
       title: 'Image',
-      dataIndex: 'deals.url',
+      dataIndex: 'deals',
       key: 'image',
-      render: (url) => <img src={url} alt="Item" style={{ width: 50, height: 50 }} />,
+      render: (deal) => <img src={deal?.url} alt="Item" style={{ width: 50, height: 50 }} />,
     },
   ];
   const itemSoldColumns = [

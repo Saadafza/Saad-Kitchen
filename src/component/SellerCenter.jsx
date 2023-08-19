@@ -101,10 +101,12 @@ const [ totalPriceEarned,setTotalPriceEarned]=useState(0)
       totalPrice: totalPriceMap.get(itemId), // Get the total price for the item from the map
     }));
   };
-useEffect(()=>{
-  const total = orders.reduce((acc, order) => acc + parseFloat(order.price), 0);
-  setTotalPriceEarned(total.toFixed(2));
-},[])
+  useEffect(() => {
+    const totalEarned = orders.reduce((acc, order) => acc + parseFloat(order.price) - 200, 0);
+    setTotalPriceEarned(totalEarned.toFixed(2));
+  }, [orders]);
+  
+  
  
 
   const itemColumns = [
@@ -119,7 +121,7 @@ useEffect(()=>{
       key: 'title',
     },
     {
-      title: 'Price',
+      title: 'PKR Price',
       dataIndex: 'price',
       key: 'price',
     },
@@ -171,7 +173,7 @@ useEffect(()=>{
       key: 'quantity',
     },
     {
-      title: '$ Price',
+      title: 'PKR Price',
       dataIndex: 'price',
       key: 'Price',
 
@@ -192,12 +194,14 @@ useEffect(()=>{
   if (role === 'Seller') {
     return (
       <>
-     <h2 style={{ marginBottom: '20px' }}>Admin Panel</h2>
+     <h2 style={{ marginBottom: '20px' }}>Seller Center</h2>
         <Card style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
           <div style={{ textAlign: 'center' }}>
+           
             <div style={{ fontSize: '24px', color: '#000' }}>Total Price Earned</div>
-            <div style={{ fontSize: '36px', color: '#000', fontWeight: 'bold' }}>{totalPriceEarned} USD</div>
+            <div style={{ fontSize: '36px', color: '#000', fontWeight: 'bold' }}>{totalPriceEarned} PKR</div>
+            <p className='text-start text-danger'>This total price is after reduction of order fee and delivery charges</p>
           </div>
        
           

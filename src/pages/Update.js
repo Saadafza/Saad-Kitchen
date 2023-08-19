@@ -96,7 +96,7 @@ function Update() {
         .then((res) => {
           if (res.data.status === true) {
             console.log("All is okay");
-            navigate("/admin");
+            navigate("/sellercenter");
           } else {
             console.log(res.data.errors);
             if (res.data.status === false) {
@@ -145,7 +145,7 @@ function Update() {
                   </MDBRow>
                   <MDBInput wrapperClass='mb-4' label='DESCRIPTION' value={description} onChange={(e) => setDescription(e.target.value)} size='lg' id='form5' type='textarea' error={errors.description} />
                   {errors.description && <div className="text-danger">{errors.description}</div>}
-                  <MDBInput wrapperClass='mb-4' label='Image Url' value={"put image  URL here from google drive"} onChange={(e) => setUrl(e.target.value)} size='lg' id='form6' type='text' error={errors.url} />
+                  <MDBInput wrapperClass='mb-4' label='Image Url' placeholder={"put image  URL here from google drive"} onChange={(e) => setUrl(e.target.value)} size='lg' id='form6' type='text' error={errors.url} />
                   {errors.description && <div className="text-danger">{errors.description}</div>}
                   <MDBBtn className='rounded-pill' color='success' onClick={handleSubmit}>Update</MDBBtn>
                 </MDBCardBody>

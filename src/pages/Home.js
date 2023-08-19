@@ -26,28 +26,27 @@ function Home(props) {
       <div className=" container-fluid sec">
         <div className="row">
 
-          <div className="col-md-5 mx-4 col hero ">
-            <div className="delivery">
-              <div className="bike-delivery">
-                <span>Bike Delivery</span>
-                <div className="imagebike"><img src={image2} alt="Bike Delivery" /></div>
+        <div className="col-md-5 mx-4 col hero">
+  <div className="delivery mt-2">
+    <div className="bike-delivery">
+      <span>Bike Delivery</span>
+      <div className="imagebike">
+        <img src={image2} alt="Bike Delivery" />
+      </div>
+    </div>
+  </div>
+  <div className="title">
+    <h1>The Fastest Food Delivery in <span>Accara</span></h1>
+  </div>
+  <p className="loerm">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nam
+    delectus sed, vel quaerat, libero nesciunt debitis, architecto repudiandae
+    accusamus aut exercitationem nisi non doloribus! Temporibus officia
+    architecto reiciendis blanditiis.
+  </p>
+  <Link to="/menu" className="btn btn-warning">Order Now</Link>
+</div>
 
-
-              </div>
-            </div>
-            <div className="title">
-              <h1>The Fastest Food
-                Delivery in <span>Accara</span> </h1>
-            </div>
-            <p className="loerm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus nam
-              delectus sed, vel quaerat, libero nesciunt debitis, architecto repudiandae
-              accusamus aut exercitationem nisi non doloribus! Temporibus officia
-              architecto reiciendis blanditiis.
-            </p>
-            <Link to="/menu" className="btn btn-warning">Order Now</Link>
-
-          </div>
           <div className="col-md-1"></div>
           <div className="col-md-5 cass">
 
@@ -82,6 +81,7 @@ function Home(props) {
             }
           </div>
         </div>
+   
         <div id="buy"> <New /></div>
         <ButtonFunctionPage addtocart={props.addtocart} />
         <div className="row">
@@ -97,14 +97,17 @@ function Home(props) {
 
           </div>
         </div>
-        <hr className="orange-hr "></hr>
+        <hr className="orange-hr "></hr><br></br>
 <div className="row">
   <div className="col-md-12 text-center pb-3 hrling">
 All Rights Reserved By Saad
   </div>
 </div>
 
-      </div></div>
+      </div>
+ 
+
+      </div>
   )
 }
 
