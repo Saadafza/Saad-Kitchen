@@ -94,37 +94,43 @@ function Nav(props) {
               </Link>
             </li>
             <li className="nav-item">
-              {role === "Delivery" ? (
-                <Link className="nav-link" to="/ordersbydeliver">
-                  Orders
-                </Link>
-              ) : (
-                <div className="dropdown show">
-                <Link
-                  className="btn dropdown-toggle"
-                  to="#"
-                  role="button"
-                  id="dropdownMenuLink"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  style={{backgroundColor:"inherit"}}
-                >
-             Apply
-                </Link>
-          
-                <div className="dropdown-menu prof" aria-labelledby="dropdownMenuLink">
-                  <Link className="dropdown-item applydel" to="/applytodeliver">
-                    Delivery
-                  </Link>
-                  <Link className="dropdown-item applydel" to="/sellerapply">
-                 Seller
-                  </Link>
-                 
-                </div>
-              </div>
-              )}
-            </li>
+  {role === "Delivery" && (
+    <Link className="nav-link" to="/ordersbydeliver">
+      Orders
+    </Link>
+  )}
+  {(role === null || role === "User") && (
+    <div className="dropdown show">
+      <Link
+        className="btn dropdown-toggle"
+        to="#"
+        role="button"
+        id="dropdownMenuLink"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+        style={{ backgroundColor: "inherit" }}
+      >
+        Apply
+      </Link>
+
+      <div className="dropdown-menu prof" aria-labelledby="dropdownMenuLink">
+        <Link className="dropdown-item applydel" to="/applytodeliver">
+          Delivery
+        </Link>
+        <Link className="dropdown-item applydel" to="/sellerapply">
+          Seller
+        </Link>
+      </div>
+    </div>
+  )}
+  {role === "Seller" && (
+    <Link className="nav-link" to="/sellercenter">
+      Seller Center
+    </Link>
+  )}
+</li>
+
             <li className="nav-item">
               <Link className="nav-link" to="/video">
                 Shorts
