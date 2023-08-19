@@ -109,10 +109,18 @@ function OrdersByDeliver() {
       key: 'id',
     },
     {
-      title: 'Address',
+      title: 'Pick From',
+      dataIndex: 'deals',
+      key: 'to',
+      render: (deal) => deal?.address
+
+    },
+    {
+      title: 'Deliver to',
       dataIndex: 'address',
       key: 'address',
     },
+  
     {
       title: 'Quantity',
       dataIndex: 'quantity',
@@ -201,7 +209,7 @@ function OrdersByDeliver() {
   if (roles === 'Delivery') {
     return (
       <>
-        <h2 style={{ marginBottom: '20px' }}>Seller Center</h2>
+        <h2 style={{ marginBottom: '20px' }}>Delivery Dashboard</h2>
         <Card style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: '20px' }}>
             <div style={{ textAlign: 'center' }}>
