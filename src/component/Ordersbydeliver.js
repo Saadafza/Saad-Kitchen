@@ -162,9 +162,9 @@ function OrdersByDeliver() {
     },
     {
       title: 'Image',
-      dataIndex: 'orders',
+      dataIndex: 'orders.deals',
       key: 'Image',
-      render: (order) => <img src={order.url} alt="img" style={{ width: 50, height: 50 }} />,
+      render: (deal) => <img src={deal?.url} alt="img" style={{ width: 50, height: 50 }} />,
     },
     {
       title: 'Address',

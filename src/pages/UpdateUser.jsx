@@ -40,11 +40,10 @@ function UpdateUser() {
     formData.append('twitter', twitter);
     formData.append('facebook', facebook);
     formData.append('about', about);
-    if (url) {
-      formData.append('url', url);
-    }
+    formData.append('url', url);
+   
 
-    const userId = user._id; // Make sure to use the correct user ID field
+    const userId = user._id; 
 
     axios.put(`https://backend-self-delta.vercel.app/api/updateuser/${userId}`, formData, {
       headers: {
@@ -80,7 +79,7 @@ function UpdateUser() {
                 <MDBInput wrapperClass='mb-4' label='Twitter' value={twitter} onChange={(e) => setTwitter(e.target.value)} size='lg' id='form3' type='text' />
                 <MDBInput wrapperClass='mb-4' label='Facebook' value={facebook} onChange={(e) => setFacebook(e.target.value)} size='lg' id='form4' type='text' />
                 <MDBInput wrapperClass='mb-4' label='About' value={about} onChange={(e) => setAbout(e.target.value)} size='lg' id='form5' type='textarea' />
-                <MDBInput wrapperClass='mb-4' label='Image URL' onChange={(e) => setUrl(e.target.url)} size='lg' id='form6' type='text' />
+                <MDBInput wrapperClass='mb-4' label='Image URL' onChange={(e) => setUrl(e.target.value)} size='lg' id='form6' type='text' />
                 <MDBBtn className='rounded-pill' color='success' onClick={handleSubmit}>Update</MDBBtn>
               </MDBCardBody>
             </MDBCol>

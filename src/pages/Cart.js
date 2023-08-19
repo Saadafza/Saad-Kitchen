@@ -2,27 +2,28 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import image1 from "../picture/emptyCart.71ad17e692d71caa77c6c9351f84756b.png"
 function Cart(props) {
   const [user, setUser] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
   const navigator = useNavigate();
-
+  const [validationError, setValidationError] = useState("");
   const [orders, setOrders] = useState([]);
+
   useEffect(() => {
     const token = localStorage.getItem("ssid");
-    if(token != null){
+    if (token != null) {
       const decodedToken = jwt_decode(token);
       if (decodedToken) {
         const userId = decodedToken.id;
         setUser(userId);
       }
-    }else{
-navigator("/login")
+    } else {
+      navigator("/login");
     }
-  
   }, []);
+
   const deleteOne = (index) => {
     const updatedCart = [...props.cart];
     updatedCart.splice(index, 1);
@@ -44,46 +45,60 @@ navigator("/login")
   };
 
   const handleSubmit = async () => {
+    if (!address.trim() || !contact.trim()) {
+      setValidationError("Please enter a valid address and contact number.");
+      return;
+    }
+
     try {
+      setValidationError(""); // Clear validation error
       const orderRequests = props.cart.map((food) => {
         return axios.post("https://backend-self-delta.vercel.app/api/create-order", {
           users: user,
           deals: food._id,
           quantity: food.quantity,
           price: food.quantity * food.price,
-          address:address,
-          contact:contact
+          address: address,
+          contact: contact,
         });
       });
 
       const responses = await Promise.all(orderRequests);
       const createdOrders = responses.map((res) => res.data.message);
       setOrders(createdOrders);
-      setAddress("")
-      setContact("")
+      setAddress("");
+      setContact("");
       props.setCart([]);
     } catch (error) {
       console.error(error);
     }
   };
-console.log(orders)
+
   let totalPrice = 0;
 
+
   return (
-    <section className="h-100 h-custom" style={{ backgroundCcolor: "#d2c9ff;" }}>
-      <div className="container py-5 h-100">
-        <div className="row d-flex justify-content-center align-items-center h-100">
-          <div className="col-12">
-            <div className="card card-registration card-registration-2" style={{ borderRradius: " 15px;" }}>
-              <div className="card-body p-0">
-                <div className="row g-0">
-                  <div className="col-lg-8">
-                    <div className="p-5">
-                      <div className="d-flex justify-content-between align-items-center mb-5">
-                        <h1 className="fw-bold mb-0 text-black">Shopping Cart</h1>
-                        <h6 className="mb-0 text-muted">{props.cart.length}</h6>
-                      </div>
-                      <hr className="my-4" />
+    <section className="h-100 h-custom" >
+    <div className="container py-5 h-100">
+      <div className="row d-flex justify-content-center align-items-center h-100">
+        <div className="col-12">
+          <div className="card card-registration card-registration-2" style={{ borderRadius: "15px" }}>
+            <div className="card-body p-0">
+              <div className="row g-0">
+                <div className="col-lg-8">
+                  <div className="p-5">
+                    <div className="d-flex justify-content-between align-items-center mb-5">
+                      <h1 className="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h6 className="mb-0 text-muted">{props.cart.length}</h6>
+                    </div>
+                    <hr className="my-4" />
+                    {props.cart.length === 0 ? (
+                        <div className="text-center">
+                          <img src={image1} alt="Empty Cart"  style={{width:"100%",height:"60%"}}/>
+                          <p>Your cart is empty.</p>
+                        </div>
+                      ) : (
+                        <>
 
                       {props.cart.map((food, index) => {
                         totalPrice += food.quantity * food.price;
@@ -125,13 +140,8 @@ console.log(orders)
                         );
                       })}
 
-                      <div className="pt-5">
-                        <h6 className="mb-0">
-                          <Link to="/menu" className="text-body">
-                            <i className="fas fa-long-arrow-alt-left me-2"></i>Back to shop
-                          </Link>
-                        </h6>
-                      </div>
+</>
+                      )}
                     </div>
                   </div>
                   <div className="col-lg-4 bg-grey">
@@ -139,36 +149,46 @@ console.log(orders)
                       <h3 className="fw-bold mb-5 mt-2 pt-1">Summary</h3>
                       <hr className="my-4" />
                       <div className="d-flex justify-content-between mb-4">
-                        <h5 className="text-uppercase">items {props.cart.length}</h5>
-                        <h5>€ {totalPrice}</h5>
+                      <hr className="my-4" />
+                     
+                        <h5 className="text-uppercase">Total price</h5>
+                        <br></br>
+                        <h5>PKR  {totalPrice}</h5>
+                    
                       </div>
-                      <h5 className="text-uppercase mb-3">Shipping</h5>
-                      <div className="mb-4 pb-2">
-                        <select className="select">
-                          <option value="1">Standard-Delivery- €5.00</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
-                          <option value="4">Four</option>
-                        </select>
-                      </div>
-                      <h5 className="text-uppercase mb-3">Enter Your Addres</h5>
+
+                      <h5 className="text-uppercase mb-3">Enter Your Address</h5>
                       <div className="mb-5">
                         <div className="form-outline">
-                          <input type="text" id="form3Examplea2" onChange={(e)=>{setAddress(e.target.value)}} className="form-control form-control-lg" />
-                         
+                          <input
+                            type="text"
+                            id="form3Examplea2"
+                            onChange={(e) => {
+                              setAddress(e.target.value);
+                              setValidationError("");
+                            }}
+                            className="form-control form-control-lg"
+                          />
                         </div>
                       </div>
                       <h5 className="text-uppercase mb-3">Enter Your Contact No</h5>
                       <div className="mb-5">
                         <div className="form-outline">
-                          <input type="text" id="form3Examplea2"  onChange={(e)=>{setContact(e.target.value)}} className="form-control form-control-lg" />
-                          
+                          <input
+                            type="text"
+                            id="form3Examplea2"
+                            onChange={(e) => {
+                              setContact(e.target.value);
+                              setValidationError("");
+                            }}
+                            className="form-control form-control-lg"
+                          />
                         </div>
                       </div>
+                      {validationError && <p className="text-danger">{validationError}</p>}
                       <hr className="my-4" />
                       <div className="d-flex justify-content-between mb-5">
-                        <h5 className="text-uppercase">Total price</h5>
-                        <h5>€ {totalPrice}</h5>
+                        {/* ... (rest of the total price JSX) */}
                       </div>
                       <button
                         type="button"
@@ -176,7 +196,7 @@ console.log(orders)
                         data-mdb-ripple-color="dark"
                         onClick={handleSubmit}
                       >
-                       Shop Now
+                        Shop Now
                       </button>
                     </div>
                   </div>
@@ -189,6 +209,5 @@ console.log(orders)
     </section>
   );
 }
-
 
 export default Cart;
