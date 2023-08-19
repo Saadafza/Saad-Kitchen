@@ -13,7 +13,7 @@ import image4 from "../picture/setting-svgrepo-com.svg";
 function Nav(props) {
   const token = getToken();
   const [user, setUser] = useState(null);
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
     if (token) {
@@ -99,7 +99,7 @@ function Nav(props) {
       Orders
     </Link>
   )}
-  {(role === null || role === "User") && (
+  {(role === null || role === "user") && (
     <div className="dropdown show">
       <Link
         className="btn dropdown-toggle"
