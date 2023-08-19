@@ -19,7 +19,6 @@ import New from "./pages/New";
 import Search from "./pages/Search";
 import Input from "./pages/Input";
 import Profilecard from "./pages/Profilecard"
-import OnlyAuth from './pages/OnlyAuth';
 import { AuthContext } from './pages/AuthContext';
 import VideoUpload from "./Videoupload/VideoUpload"
 import VideoDisplayPage from "./Videoupload/VideoDisplayPage";

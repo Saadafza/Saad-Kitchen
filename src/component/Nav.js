@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link,useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { AuthContext } from "../pages/AuthContext";
 import { getToken } from "../pages/Functions";
 import Input from "../pages/Input";
 
@@ -12,59 +13,51 @@ import image4 from "../picture/setting-svgrepo-com.svg";
 
 function Nav(props) {
   const token = getToken();
-  const [user, setUser] = useState(null);
-  const [role, setRole] = useState(null);
+  const { user, setUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (token) {
       const decodedToken = jwt_decode(token);
       if (decodedToken) {
         setUser(decodedToken);
-        setRole(decodedToken.role);
-   
       }
+    } else {
+      setUser(null);
     }
   }, [token]);
 
+ 
 
-
-  const handleLogout = () => {
-    // Add any logic here for clearing tokens or user data
-    setUser(null);
-    setRole("");
-  };
-
-  const userDropdown = user ? (
-    <div className="dropdown show">
-      <Link
-        className="btn dropdown-toggle"
-        to="#"
-        role="button"
-        id="dropdownMenuLink"
-        data-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        {user.name}
-      </Link>
-
-      <div className="dropdown-menu prof" aria-labelledby="dropdownMenuLink">
-        <Link className="dropdown-item" to="/updateuser">
-          <img src={image4} alt="Update" /> UPDATE
+  const renderUserDropdown = () => {
+    return (
+      <div className="dropdown show">
+        <Link
+          className="btn dropdown-toggle"
+          to="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          {user.name}
         </Link>
-        <Link className="dropdown-item" to="/profilecard">
-          <img src={image2} alt="Profile" /> PROFILE
-        </Link>
-        <Link className="dropdown-item" to="/logout" onClick={handleLogout}>
-          <img src={image3} alt="Logout" /> LOGOUT
-        </Link>
+
+        <div className="dropdown-menu prof" aria-labelledby="dropdownMenuLink">
+          <Link className="dropdown-item" to="/updateuser">
+            <img src={image4} alt="Update" /> UPDATE
+          </Link>
+          <Link className="dropdown-item" to="/profilecard">
+            <img src={image2} alt="Profile" /> PROFILE
+          </Link>
+          <Link className="dropdown-item" to="/logout">
+            <img src={image3} alt="Logout" /> LOGOUT
+          </Link>
+        </div>
       </div>
-    </div>
-  ) : (
-    <Link className="btn btn-dark mx-2" to="/login">
-      Login
-    </Link>
-  );
+    );
+  };
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary miannav">
@@ -94,12 +87,12 @@ function Nav(props) {
               </Link>
             </li>
             <li className="nav-item">
-  {role === "Delivery" && (
+  {user?.role === "Delivery" && (
     <Link className="nav-link" to="/ordersbydeliver">
       Orders
     </Link>
   )}
-  {(role === null || role === "user") && (
+  {(user?.role === null || user?.role === "user") && (
     <div className="dropdown show">
       <Link
         className="btn dropdown-toggle"
@@ -124,7 +117,7 @@ function Nav(props) {
       </div>
     </div>
   )}
-  {role === "Seller" && (
+  {user?.role === "Seller" && (
     <Link className="nav-link" to="/sellercenter">
       Seller Center
     </Link>
@@ -136,7 +129,7 @@ function Nav(props) {
                 Shorts
               </Link>
             </li>
-            {role === "admin" && (
+            {user?.role === "admin" && (
               <li className="nav-item">
                 <Link className="nav-link" to="/admin">
                   Admin
@@ -159,11 +152,11 @@ function Nav(props) {
           </div>
 
           <div className="d-flex mx-5 my-2" role="search">
-            {token ? userDropdown : (
-              <Link className="btn btn-dark mx-2" to="/login">
-                Login
-              </Link>
-            )}
+          {user ? renderUserDropdown() : (
+  <Link className="btn btn-dark mx-2" to="/login">
+    Login
+  </Link>
+)}
           </div>
         </div>
       </div>

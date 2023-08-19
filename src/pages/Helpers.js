@@ -8,7 +8,7 @@ export const removeToken = () => {
 
 // get the user details
 export const getUser = () => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("ssid");
     if(token) {
         return jwtDecode(token);
     }

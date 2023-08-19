@@ -2,24 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-const VideoBackground = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Ensure the video is behind other content */
-  overflow: hidden; /* Hide overflow for video element */
-`;
-
-const BackgroundVideo = styled.video`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  
-`;
-
-const CardContainer = styled.div`
+const VideoContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,42 +12,49 @@ const CardContainer = styled.div`
   margin: 10px;
 `;
 
-const VideoTitle = styled.h2`
-  font-size: 18px;
-  margin-bottom: 10px;
+const BackgroundVideo = styled.video`
+  width: 100%;
+  max-width: 500px;
 `;
 
-const VideoDescription = styled.p`
+const NextButton = styled.button`
+  margin-top: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
   font-size: 14px;
+  cursor: pointer;
 `;
-
-
 
 const VideoDisplayPage = () => {
   const [videos, setVideos] = useState([]);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
 
   useEffect(() => {
-    // Fetch video data from your API
     axios.get('https://backend-self-delta.vercel.app/api/videos').then((response) => {
       setVideos(response.data.videos);
     });
   }, []);
 
+  const handleNextVideo = () => {
+    setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+  };
+
   return (
     <div>
-   
-    
       <h1>Video Display Page</h1>
-      <div>
-        {videos.map((video) => (
-          <CardContainer key={video._id}>
-         
-            <iframe src={video.url} width="300" height="500" allow="autoplay"></iframe>
-            <VideoDescription>{video.description}</VideoDescription>
-           
-          </CardContainer>
-        ))}
-      </div>
+      <VideoContainer>
+        <BackgroundVideo
+          src={videos[currentVideoIndex]?.url}
+          width="500"
+          height="300"
+          muted
+          autoPlay
+        ></BackgroundVideo>
+        <NextButton onClick={handleNextVideo}>Next Video</NextButton>
+      </VideoContainer>
     </div>
   );
 };
