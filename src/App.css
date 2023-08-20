@@ -274,7 +274,9 @@ font-weight: bold;
 display: inline-flex;  
 }
 .menuhub{
-  display:inline-flex ;  
+  display:inline-flex ; 
+  flex-wrap: wrap;
+  justify-content: center; 
 
 gap: 0px; /* Adjust the gap between buttons as needed */
   
