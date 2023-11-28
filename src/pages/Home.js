@@ -9,17 +9,19 @@ import { Link } from "react-router-dom";
 function Home(props) {
   const [foods, setFoods] = useState([]);
 
-  useEffect(() => {
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch food data
+        const response = await axios.get("https://backend-self-delta.vercel.app/api/food");
+        setFoods(response.data.data);
+      } catch (error) {
+        console.error("Error fetching food data:", error);
+      }
+    };
 
-
-    axios.get("https://backend-self-delta.vercel.app/api/all/Chicken").then((res) => {
-
-
-
-      setFoods(res.data.data);
-
-    })
-
+    // Call the fetchData function when the component mounts
+    fetchData();
   }, []);
   return (
     <div>
