@@ -16,7 +16,7 @@ function Home(props) {
 
 
 
-      setFoods(res.data.food);
+      setFoods(res.data.data);
 
     })
 
