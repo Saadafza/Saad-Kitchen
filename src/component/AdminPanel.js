@@ -59,7 +59,7 @@ const AdminPanel = () => {
   const fetchItems = async () => {
     try {
       const response = await axios.get('https://backend-self-delta.vercel.app/api/food');
-      setItems(response.data.food);
+      setItems(response.data.data);
     } catch (error) {
       console.error('Error fetching items:', error);
     }
