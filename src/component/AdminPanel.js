@@ -105,7 +105,7 @@ const AdminPanel = () => {
 
   const deleteItem = async (itemId) => {
     try {
-      await axios.delete(`https://backend-self-delta.vercel.app/api/delete/${itemId}`);
+      await axios.delete(`https://backend-self-delta.vercel.app/api/deletedbyid/${itemId}`);
       fetchItems();
     } catch (error) {
       console.error('Error deleting item:', error);
