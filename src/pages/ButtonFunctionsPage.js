@@ -29,15 +29,19 @@ const ButtonFunctionsPage = (props) => {
  
   const [isUpdating, setIsUpdating] = useState(false);
 
-  useEffect(() => {
-    // Fetch food data
-    axios.get("https://backend-self-delta.vercel.app/api/food")
-      .then((res) => {
-        setFoods(res.data.food);
-      })
-      .catch((error) => {
+ useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Fetch food data
+        const response = await axios.get("https://backend-self-delta.vercel.app/api/food");
+        setFoods(response.data.data);
+      } catch (error) {
         console.error("Error fetching food data:", error);
-      });
+      }
+    };
+
+    // Call the fetchData function when the component mounts
+    fetchData();
   }, []);
   console.log(foods)
   useEffect(() => {
