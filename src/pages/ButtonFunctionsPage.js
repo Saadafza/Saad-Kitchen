@@ -39,7 +39,7 @@ const ButtonFunctionsPage = (props) => {
         console.error("Error fetching food data:", error);
       });
   }, []);
-  
+  console.log(foods)
   useEffect(() => {
     // Check for token and decode it
     if (token) {
