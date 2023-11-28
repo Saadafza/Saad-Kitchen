@@ -8,7 +8,7 @@ const New = () => {
   useEffect(() => {
     axios.get("https://backend-self-delta.vercel.app/api/food")
       .then((res) => {
-        setFoods(res.data.food);
+        setFoods(res.data.data);
       })
       .catch((error) => {
         console.log(error);
