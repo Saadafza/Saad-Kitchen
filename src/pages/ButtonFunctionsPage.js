@@ -60,7 +60,7 @@ const ButtonFunctionsPage = (props) => {
   
   useEffect(() => {
     fetchLikeCounts();
-  }, [foods]);
+  }, []);
   
   const fetchLikeCounts = async () => {
     try {
@@ -170,44 +170,14 @@ const ButtonFunctionsPage = (props) => {
 
  
   const handleLikeDislike = async (productId) => {
-    // Check if a request is already in progress
-    if (isUpdating) {
-      return;
-    }
+ 
+   
   
-    setIsUpdating(true); // Set a flag to indicate that an update is in progress
-  
-    try {
-      const config = {
-        headers: {
-          Authorization: token,
-        },
-      };
-  
-      // Toggle liked status immediately in the UI
-      const updatedFoods = foods.map((food) =>
-        food._id === productId
-          ? {
-              ...food,
-              liked: !food.liked,
-            }
-          : food
-      );
-      setFoods(updatedFoods);
-  
-      // Send request to the server
+
       await axios.post(`https://backend-self-delta.vercel.app/api/like/${productId}`, { users: users }, config);
   
-      // Update the likes count
-      const updatedLikes = likes.map((like) =>
-        like._id === productId
-          ? {
-              ...like,
-              liked: !like.liked,
-            }
-          : like
-      );
-      setLikes(updatedLikes);
+     
+    
     } catch (error) {
       console.error("Error liking/disliking:", error);
       // Revert UI state if request fails
