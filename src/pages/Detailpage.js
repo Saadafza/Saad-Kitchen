@@ -3,7 +3,7 @@ import axios from "axios";
 import { Container, Grid, Card, CardContent, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-import {Avatar} from antd;
+import { Avatar } from 'antd';
 const DetailPage = () => {
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
