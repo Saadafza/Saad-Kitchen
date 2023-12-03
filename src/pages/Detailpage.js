@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Container, Grid, Card, CardContent, Typography, TextField, Button, Avatar } from "@mui/material";
+import { Container, Grid, Card, CardContent, Typography, TextField, Button } from "@mui/material";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import jwt_decode from "jwt-decode";
-
+import {Avatar} from antd;
 const DetailPage = () => {
   const [product, setProduct] = useState({});
   const [comments, setComments] = useState([]);
@@ -123,6 +123,8 @@ navigator("/login")
                 <Grid container spacing={2} alignItems="center">
                   <Grid item>
                     <Avatar src={"https://backend-self-delta.vercel.app/api/" +comment.user[0].url} alt="User" />
+    
+        <Avatar style={{ backgroundColor: '#f56a00' }}>K</Avatar>
                  </Grid>
                   <Grid item>
                     <Typography variant="h6">{comment.user[0].name}</Typography>
