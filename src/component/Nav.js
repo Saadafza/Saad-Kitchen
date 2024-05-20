@@ -64,7 +64,7 @@ function Nav(props) {
       <div className="container-fluid">
         <Link className="navbar-brand mx-5" to="/">
           <img src={image1} alt="Saad Logo" width="30" height="24" />
-          <span className="topic">Saad's Kitchen</span>
+          <span className="topic">Ayub's Kitchen</span>
         </Link>
 
         <button
